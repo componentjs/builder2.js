@@ -9,7 +9,7 @@ var join = require('path').join
 
 var options = {
   install: true,
-  remote: new Remotes.GitHub
+  remote: new Remotes.GitHub,
 }
 
 function fixture(name) {
@@ -29,6 +29,40 @@ describe('js-scripts', function () {
 
   it('should build', co(function* () {
     var builder = new Builder(nodes)
+    js = yield builder.toStr()
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require('emitter')")
+    js.should.not.include("require('component-emitter')")
+    js.should.not.include("require('component/emitter')")
+    js.should.not.include("require('./something')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-scripts")', ctx)
+    vm.runInContext('if (!this.one) throw new Error()', ctx)
+    vm.runInContext('if (!this.two) throw new Error()', ctx)
+  })
+})
+
+describe('js-scripts -dev', function () {
+  var tree
+  var nodes
+  var js
+
+  it('should install', co(function* () {
+    var resolver = new Resolver(fixture('js-scripts'), options)
+    tree = yield* resolver.tree()
+    nodes = resolver.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = new Builder(nodes, {
+      dev: true
+    })
     js = yield builder.toStr()
   }))
 
