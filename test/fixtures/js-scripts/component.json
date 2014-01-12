@@ -1,0 +1,10 @@
+{
+  "name": "js-scripts",
+  "dependencies": {
+    "component/emitter": "1.1.1"
+  },
+  "scripts": [
+    "index.js",
+    "something.js"
+  ]
+}

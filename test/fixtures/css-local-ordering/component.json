@@ -1,0 +1,10 @@
+{
+  "name": "css-local-ordering",
+  "locals": [
+    "one",
+    "two"
+  ],
+  "paths": [
+    "lib"
+  ]
+}

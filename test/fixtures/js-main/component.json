@@ -1,0 +1,9 @@
+{
+  "name": "js-main",
+  "main": "lib/main.js",
+  "scripts": [
+    "lib/main.js",
+    "lib/one.js",
+    "lib/two.js"
+  ]
+}

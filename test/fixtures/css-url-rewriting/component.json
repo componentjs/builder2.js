@@ -1,0 +1,9 @@
+{
+  "name": "css-url-rewriting",
+  "styles": [
+    "index.css"
+  ],
+  "files": [
+    "public/index.txt"
+  ]
+}

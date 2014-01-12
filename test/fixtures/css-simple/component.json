@@ -1,0 +1,7 @@
+{
+  "name": "css-simple",
+  "styles": [
+    "one.css",
+    "two.css"
+  ]
+}

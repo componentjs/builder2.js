@@ -1,0 +1,42 @@
+{
+  "name": "component-builder2",
+  "description": "builder for component",
+  "version": "0.0.1",
+  "author": {
+    "name": "Jonathan Ong",
+    "email": "me@jongleberry.com",
+    "url": "http://jongleberry.com",
+    "twitter": "https://twitter.com/jongleberry"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/component/builder2.js.git"
+  },
+  "bugs": {
+    "mail": "me@jongleberry.com",
+    "url": "https://github.com/component/builder2.js/issues"
+  },
+  "dependencies": {
+    "stream-to-array": "^1.0.0",
+    "requires": "^1.0.0",
+    "string-to-js": "~0.0.1",
+    "graceful-fs": "^2.0.1",
+    "parchan": "~0.1.0",
+    "save-to": "^1.0.2",
+    "co": "^3"
+  },
+  "devDependencies": {
+    "component-resolver": "*",
+    "remotes": "*",
+    "mocha": "^1.17.0",
+    "should": "^2.1.1",
+    "regenerator": "~0.3.4"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": ">= 0.11.4"
+  }
+}
