@@ -19,9 +19,10 @@
   },
   "dependencies": {
     "stream-to-array": "^1.0.0",
+    "unglob": "~0.1.0",
     "requires": "^1.0.0",
     "graceful-fs": "^2.0.1",
-    "parchan": "~0.1.0",
+    "parchan": "~1.0.0",
     "save-to": "^1.0.2",
     "co": "^3"
   },
@@ -30,10 +31,12 @@
     "remotes": "*",
     "mocha": "^1.17.0",
     "should": "^2.1.1",
+    "gnode": "~0.0.6",
     "regenerator": "~0.3.4"
   },
   "scripts": {
-    "test": "make test"
+    "test": "NODE=gnode make test",
+    "prepublish": "make clean build"
   },
   "engines": {
     "node": ">= 0.11.4"

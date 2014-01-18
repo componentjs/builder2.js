@@ -1,4 +1,5 @@
 var Builder = require('..').scripts
+var plugins = require('..').plugins
 
 var vm = require('vm')
 var co = require('co')
@@ -16,6 +17,13 @@ function fixture(name) {
   return join(__dirname, 'fixtures', name)
 }
 
+function build(nodes, options) {
+  return new Builder(nodes, options)
+    .use('scripts', plugins.js)
+    .use('json', plugins.json)
+    .use('templates', plugins.string)
+}
+
 describe('js-scripts', function () {
   var tree
   var nodes
@@ -28,7 +36,7 @@ describe('js-scripts', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = new Builder(nodes)
+    var builder = build(nodes)
     js = yield builder.toStr()
   }))
 
@@ -60,7 +68,7 @@ describe('js-scripts -dev', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = new Builder(nodes, {
+    var builder = build(nodes, {
       dev: true
     })
     js = yield builder.toStr()
@@ -94,7 +102,7 @@ describe('js-main', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = new Builder(nodes)
+    var builder = build(nodes)
     js = yield builder.toStr()
   }))
 
@@ -129,7 +137,7 @@ describe('js-json', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = new Builder(nodes)
+    var builder = build(nodes)
     js = yield builder.toStr()
   }))
 
@@ -153,7 +161,7 @@ describe('js-templates', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = new Builder(nodes)
+    var builder = build(nodes)
     js = yield builder.toStr()
   }))
 

@@ -1,4 +1,5 @@
 var Builder = require('..').styles
+var plugins = require('..').plugins
 
 var co = require('co')
 var fs = require('fs')
@@ -20,6 +21,11 @@ function read(name) {
   return fs.readFileSync(join(fixture(name), 'out.css'), 'utf8').trim()
 }
 
+function build(nodes, options) {
+  return new Builder(nodes, options)
+    .use('styles', plugins.css)
+}
+
 function test(name) {
   describe(name, function () {
     var tree
@@ -33,7 +39,7 @@ function test(name) {
     }))
 
     it('should build', co(function* () {
-      var builder = new Builder(nodes)
+      var builder = build(nodes)
       css = yield builder.toStr()
     }))
 

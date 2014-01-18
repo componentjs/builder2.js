@@ -1,7 +1,7 @@
 {
   "name": "js-templates",
   "main": "index.html",
-  "json": [
+  "templates": [
     "index.html"
   ]
 }
