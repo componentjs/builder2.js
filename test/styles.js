@@ -53,3 +53,28 @@ test('css-simple')
 test('css-local-ordering')
 test('css-url-rewriting')
 test('css-glob')
+
+describe('font-awesome', function () {
+  var tree
+  var nodes
+  var css
+
+  it('should install', co(function* () {
+    var resolver = new Resolver({
+      dependencies: {
+        "fortawesome/font-awesome": "4.0.3"
+      }
+    }, options)
+    tree = yield* resolver.tree()
+    nodes = resolver.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = build(nodes)
+    css = yield builder.toStr()
+  }))
+
+  it('should be correct', co(function* () {
+    css.should.include('url("fortawesome/font-awesome/v4.0.3/fonts/fontawesome-webfont.eot?v=4.0.3")')
+  }))
+})
