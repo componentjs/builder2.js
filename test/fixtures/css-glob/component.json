@@ -1,0 +1,6 @@
+{
+  "name": "css-glob",
+  "styles": [
+    "*/*.css"
+  ]
+}

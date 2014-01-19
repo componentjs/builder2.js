@@ -52,3 +52,4 @@ function test(name) {
 test('css-simple')
 test('css-local-ordering')
 test('css-url-rewriting')
+test('css-glob')
