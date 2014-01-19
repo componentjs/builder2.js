@@ -23,7 +23,7 @@ function read(name) {
 
 function build(nodes, options) {
   return new Builder(nodes, options)
-    .use('styles', plugins.css)
+    .use('styles', plugins.css())
 }
 
 function test(name) {
