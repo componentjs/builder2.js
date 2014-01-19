@@ -172,3 +172,36 @@ describe('js-templates', function () {
     vm.runInContext('if (string !== "<p>hi</p>") throw new Error()', ctx)
   })
 })
+
+describe('js-extension', function () {
+  var tree
+  var nodes
+  var js
+
+  it('should install', co(function* () {
+    var resolver = new Resolver(fixture('js-extension'), options)
+    tree = yield* resolver.tree()
+    nodes = resolver.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = Builder(nodes)
+    .use('coffee', function* (file) {
+      // no transform - just assume it's valid js
+      if (file.extension !== 'coffee') return
+      file.string = true
+    })
+    js = yield builder.toStr()
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.include('require("js-extension/something.coffee")')
+    js.should.include('require.register("js-extension"')
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('if (require("js-extension") !== "something") throw new Error()', ctx)
+  })
+})

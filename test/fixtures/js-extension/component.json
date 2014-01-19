@@ -1,0 +1,8 @@
+{
+  "name": "js-extension",
+  "main": "index.coffee",
+  "coffee": [
+    "index.coffee",
+    "something.coffee"
+  ]
+}
