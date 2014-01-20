@@ -169,7 +169,7 @@ describe('js-templates', function () {
     var ctx = vm.createContext()
     vm.runInContext(js, ctx)
     vm.runInContext('var string = require("js-templates")', ctx)
-    vm.runInContext('if (string !== "<p>hi</p>") throw new Error()', ctx)
+    vm.runInContext('if (string !== "<div>\\n  <p>hi</p>\\n</div>") throw new Error()', ctx)
   })
 })
 
