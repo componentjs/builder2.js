@@ -1,0 +1,6 @@
+{
+  "name": "files",
+  "files": [
+    "**/*.txt"
+  ]
+}
