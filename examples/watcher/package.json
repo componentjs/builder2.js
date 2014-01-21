@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "co": "*",
+    "gaze": "*",
+    "mkdirp": "*",
+    "component-resolver": "*",
+    "component-builder2": "*",
+    "builder-html-minifier": "*",
+  }
+}
