@@ -7,34 +7,36 @@ Another version of component's builder. Some differences:
 - Much leaner `require` implementation
 - Fixes a lot of issues with the previous builder
 
+**Note:** Uses generators, so use node 0.11.4+ and the `--harmony-generators` flag.
+
 ## Example
 ```js
-var builder = require('component-builder2')
-var Resolver = require('component-resolver')
-var Remotes = require('remotes')
-var remotes = new Remotes()
-remotes.use(new Remotes.GitHub({
-  auth: 'jonathanong:password'
-}))
+var Builder = require('component-builder2'),
+    Resolver = require('component-resolver'),
+    Remotes = require('remotes'),
+    co = require('co'),
+    remotes = new Remotes();
 
-co(function* () {
-  var resolver = new Resolver({
-    dependencies: {
-      'component/emitter': '1.1.1'
-    }
-  }, {
-    remote: remotes,
-    install: true
-  })
+co(function* build() {
+    var resolver = new Resolver(process.cwd(), {
+        remote: new Remotes.Github,
+        install: true
+    });
 
-  var tree = yield* resolver.tree()
-  var nodes = resolver.flatten(tree)
+    var tree = yield* resolver.tree();
+    var nodes = resolver.flatten(tree);
 
-  yield [
-    builder.scripts(nodes).toFile('build.js'),
-    builder.styles(nodes).toFile('build.css')
-  ]
-})
+    var script = new Builder.scripts(nodes);
+    script.use('scripts', Builder.plugins.string());
+
+    var style = new Builder.styles(nodes);
+    style.use('styles', Builder.plugins.css());
+
+    yield [
+        script.toFile('build.js'),
+        style.toFile('build.css')
+    ];
+})();
 ```
 
 ## API
