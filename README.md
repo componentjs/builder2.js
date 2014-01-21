@@ -7,6 +7,8 @@ Another version of component's builder. Some differences:
 - Much leaner `require` implementation
 - Fixes a lot of issues with the previous builder
 
+**Note:** Uses generators, so use node 0.11.4+ and the `--harmony-generators` flag.
+
 ## Example
 ```js
 var Builder = require('component-builder2'),
