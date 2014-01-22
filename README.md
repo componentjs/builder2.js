@@ -8,9 +8,12 @@ Another version of component's builder. Some differences:
 - Handles newer features like globs
 - Fixes a lot of issues with the previous builder
 
+You might also be interested in the [watcher](https://github.com/component/watcher.js).
+
 **Note:** Currently uses generators, so use node 0.11.4+ and the `--harmony-generators` flag.
 
 ## Example
+
 ```js
 var Builder = require('component-builder2');
 var Resolver = require('component-resolver');
