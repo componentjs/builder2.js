@@ -1,6 +1,5 @@
 {
   "name": "js-templates",
-  "main": "index.html",
   "templates": [
     "index.html"
   ]

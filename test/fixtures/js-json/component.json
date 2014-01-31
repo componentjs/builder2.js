@@ -1,6 +1,5 @@
 {
   "name": "js-json",
-  "main": "index.json",
   "json": [
     "index.json"
   ]
