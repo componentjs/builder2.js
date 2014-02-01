@@ -34,12 +34,10 @@
     "remotes": "*",
     "mocha": "^1.17.0",
     "should": "^3.0.0",
-    "gnode": "~0.0.6",
-    "regenerator": "~0.3.4"
+    "gnode": "~0.0.6"
   },
   "scripts": {
-    "test": "NODE=gnode make test",
-    "prepublish": "make clean build"
+    "test": "NODE=gnode make test"
   },
   "engines": {
     "node": ">= 0.11.4"
