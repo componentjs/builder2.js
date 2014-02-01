@@ -228,3 +228,26 @@ describe('js-glob', function () {
     vm.runInContext('if (require("js-glob") !== "glob") throw new Error()', ctx)
   })
 })
+
+describe('js-infer-main', function () {
+  var tree
+  var nodes
+  var js
+
+  it('should install', co(function* () {
+    var resolver = new Resolver(fixture('js-infer-main'), options)
+    tree = yield* resolver.tree()
+    nodes = resolver.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = build(nodes)
+    js = yield builder.toStr()
+  }))
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('if (require("js-infer-main").trim() !== "<p>hi</p>") throw new Error()', ctx)
+  })
+})
