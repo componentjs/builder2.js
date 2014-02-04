@@ -18,26 +18,29 @@
     "url": "https://github.com/component/builder2.js/issues"
   },
   "dependencies": {
+    "generator-supported": "~0.0.1",
     "debug": "*",
     "stream-to-array": "^1.0.0",
     "mkdirp": "~0.3.5",
-    "unglob": "~0.1.0",
+    "unglob": "~0.1.1",
     "requires": "^1.0.0",
     "graceful-fs": "^2.0.1",
-    "chanel": "~1.0.2",
+    "chanel": "^1.0.5",
     "save-to": "^1.0.2",
     "cp": "~0.1.1",
-    "co": "^3"
+    "co": "^3.0.2"
   },
   "devDependencies": {
     "component-resolver": "*",
     "remotes": "*",
     "mocha": "^1.17.0",
     "should": "^3.0.0",
-    "gnode": "~0.0.6"
+    "gnode": "~0.0.6",
+    "regenerator": "~0.3.9"
   },
   "scripts": {
-    "test": "NODE=gnode make test"
+    "test": "NODE=gnode make test",
+    "prepublish": "make clean build"
   },
   "engines": {
     "node": ">= 0.11.4"
