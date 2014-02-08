@@ -1,0 +1,6 @@
+{
+  "name": "js-debug",
+  "dependencies": {
+    "visionmedia/debug": "0.7.4"
+  }
+}

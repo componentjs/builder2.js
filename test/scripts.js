@@ -251,3 +251,20 @@ describe('js-infer-main', function () {
     vm.runInContext('if (require("js-infer-main").trim() !== "<p>hi</p>") throw new Error()', ctx)
   })
 })
+
+describe('js-debug', function () {
+  var tree
+  var nodes
+  var js
+
+  it('should install', co(function* () {
+    var resolver = new Resolver(fixture('js-debug'), options)
+    tree = yield* resolver.tree()
+    nodes = resolver.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = build(nodes)
+    js = yield builder.toStr()
+  }))
+})
