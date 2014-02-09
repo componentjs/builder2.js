@@ -57,6 +57,10 @@ You'll also want to read docs on [`builder`](https://github.com/component/builde
 
 See the documentation for more information on each.
 
+## Examples
+
+- [simple-builder2-demo](http://github.com/mnmly/simple-builder2-demo): Simple demo that shows how to use plugins and build as bundles.
+
 ## License
 
 The MIT License (MIT)
