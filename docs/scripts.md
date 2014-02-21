@@ -1,6 +1,6 @@
-## var builder = new builder.scripts(nodes, [options])
+## var scripts = build.scripts(nodes, [options])
 
-`options` (in addition to [builder](./builder.md) options):
+`options` (in addition to [builder](./builders.md) options):
 
 - `require` <true> - include the `require` implementation in the build. Set this to `false` for separate builds.
 
@@ -18,8 +18,8 @@ Note: `file.string` must be populated for a file to be included in the build.
 Includes a file as regular Javascript.
 
 ```js
-builder.scripts()
-.use('scripts', builder.plugins.js());
+build.scripts()
+  .use('scripts', builder.plugins.js());
 ```
 
 ### json()
@@ -27,8 +27,8 @@ builder.scripts()
 Includes a file as JSON. Will throw on invalid JSON.
 
 ```js
-builder.scripts()
-.use('json', builder.plugins.json());
+build.scripts()
+  .use('json', builder.plugins.json());
 ```
 
 ### string()
@@ -36,8 +36,8 @@ builder.scripts()
 Includes a file as a string.
 
 ```js
-builder.scripts()
-.use('templates', builder.plugins.css());
+build.scripts()
+  .use('templates', builder.plugins.string());
 ```
 
 ### Other

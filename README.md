@@ -15,33 +15,33 @@ You might also be interested in the [watcher](https://github.com/component/watch
 ## Example
 
 ```js
-var Builder = require('component-builder2');
-var Resolver = require('component-resolver');
+var build = require('component-builder2');
+var resolve = require('component-resolver');
 var co = require('co');
 
 co(function* build() {
-    var resolver = new Resolver(process.cwd(), {
-        install: true
-    });
+  var resolver = resolve(process.cwd(), {
+    install: true
+  });
 
-    // resolve the dependency tree
-    var tree = yield* resolver.tree();
-    // lists the components in the proper build order
-    var nodes = resolver.flatten(tree);
+  // resolve the dependency tree
+  var tree = yield* resolver.tree();
+  // lists the components in the proper build order
+  var nodes = resolver.flatten(tree);
 
-    // only include `.js` files from components' `.scripts` field
-    var script = new Builder.scripts(nodes);
-    script.use('scripts', Builder.plugins.js());
+  // only include `.js` files from components' `.scripts` field
+  var script = build.scripts(nodes);
+    .use('scripts', build.plugins.js());
 
-    // only include `.css` files from components' `.styles` field
-    var style = new Builder.styles(nodes);
-    style.use('styles', Builder.plugins.css());
+  // only include `.css` files from components' `.styles` field
+  var style = build.styles(nodes);
+    .use('styles', build.plugins.css());
 
-    // write the builds to the following files in parallel
-    yield [
-        script.toFile('build.js'),
-        style.toFile('build.css')
-    ];
+  // write the builds to the following files in parallel
+  yield [
+    script.toFile('build.js'),
+    style.toFile('build.css')
+  ];
 })();
 ```
 

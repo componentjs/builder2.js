@@ -1,4 +1,4 @@
-## var builder = new Builder(nodes, [options])
+## var builder = build(nodes, [options])
 
 Creates a new builder with `nodes`. `builder` is a `Readable Stream`.
 
@@ -26,7 +26,7 @@ Plugins are of the form:
 .use(field, plugin(options))
 
 // example
-.use('scripts', builder.plugins.js())
+.use('scripts', build.plugins.js())
 ```
 
 Thus, plugins are registered on a per-field, allowing the builder to know which `fields` to unglob. You __must__ register your plugins on the same tick you initiate your builder. The build process beings on the next tick.
@@ -47,7 +47,7 @@ function plugin(options) {
 
 // asynchronous
 function plugin(options) {
-  return function plugin(file, callback) {
+  return function plugin(file, done) {
 
   }
 }
@@ -66,7 +66,7 @@ When creating a plugin, you __should__ wrap the actual plugin with another funct
 
 - `path` - the `path` of the file as defined in the component, ex. `index.js`.
 - `filename` - the absolute `path` of where this file is located, ex. `/Users/jong/app/index.js`.
-- `extension` - the `extension` of this file, example `.js`.
+- `extension` - the `extension` of this file, example `js`.
 - `component` - the `component.json`
 - `branch` - the resolved branch based on the resolver.
 - `obj` - a resolved "builder" object - look at the source code for more details.

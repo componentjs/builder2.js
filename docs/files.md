@@ -1,4 +1,4 @@
-## var builder = new builder.files(nodes, [options])
+## var files = build.files(nodes, [options])
 
 This is the simplest builder. It isn't a stream unlike `scripts` or `styles` - this just iterates through all the files you choose and allows you to do whatever you wish with them.
 
@@ -9,15 +9,15 @@ This is the simplest builder. It isn't a stream unlike `scripts` or `styles` - t
 Copies each file to the destination with the directory `<user>/<repo>/<version>`. You probably want to use this when creating a production build.
 
 ```js
-builder.files()
-.use('images', builder.plugins.copy())
+build.files()
+  .use('images', builder.plugins.copy())
 ```
 
 ### symlink()
 
-Very similar to `copy()`, but symlinks (or "creates shortcuts") instead. This is faster during development.
+Very similar to `copy()`, but symlinks (or "creates shortcuts") instead. This is faster during development. Note that this will only work on UNIX-like systems.
 
 ```js
-builder.files()
-.use('images', builder.plugins.symlink())
+build.files()
+  .use('images', builder.plugins.symlink())
 ```
