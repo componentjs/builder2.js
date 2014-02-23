@@ -4,13 +4,11 @@ var plugins = require('..').plugins
 var fs = require('fs')
 var co = require('co')
 var assert = require('assert')
-var Resolver = require('component-resolver')
-var Remotes = require('remotes')
+var resolve = require('component-resolver')
 var join = require('path').join
 
 var options = {
-  install: true,
-  remote: new Remotes.GitHub,
+  install: true
 }
 
 function fixture(name) {
@@ -28,9 +26,8 @@ describe('copy', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('files'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('files'), options);
+    nodes = resolve.flatten(tree);
   }))
 
   it('should build', co(function* () {

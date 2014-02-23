@@ -31,12 +31,13 @@
     "co": "^3.0.2"
   },
   "devDependencies": {
-    "component-resolver": "*",
-    "remotes": "*",
+    "component-resolver": "~0.2.0",
+    "rimraf": "*",
+    "remotes": "~0.2.0",
     "mocha": "^1.17.0",
     "should": "^3.0.0",
-    "gnode": "~0.0.6",
-    "regenerator": "~0.3.9"
+    "gnode": "0",
+    "regenerator": "0"
   },
   "scripts": {
     "test": "NODE=gnode make test",

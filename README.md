@@ -8,41 +8,42 @@ Another version of component's builder. Some differences:
 - Handles newer features like globs
 - Fixes a lot of issues with the previous builder
 
-You might also be interested in the [watcher](https://github.com/component/watcher.js).
+Depends on:
 
-**Note:** Currently uses generators, so use node 0.11.4+ and the `--harmony-generators` flag.
+- [component-resolver](https://github.com/component/resolver.js) - resolved dependency tree
+- [component-flatten](https://github.com/jonathanong/flatten.js) - flatten the dependency tree to create a build order
+
+You may be interested in:
+
+- [component-bundler](https://github.com/component/bundler.js) - create multiple bundles from the resolved dependency tree
+- [component-process](https://github.com/jonathanong/component-process.js) - a faster component(1) as a running process
 
 ## Example
 
 ```js
 var build = require('component-builder2');
 var resolve = require('component-resolver');
-var co = require('co');
+var flatten = require('component-flatten');
 
-co(function* build() {
-  var resolver = resolve(process.cwd(), {
-    install: true
-  });
-
-  // resolve the dependency tree
-  var tree = yield* resolver.tree();
+// resolve the dependency tree
+resolve(process.cwd(), {
+  // install the remote components locally
+  install: true
+}, function (err, tree) {
+  if (err) throw err;
   // lists the components in the proper build order
-  var nodes = resolver.flatten(tree);
+  var nodes = flatten(tree);
 
   // only include `.js` files from components' `.scripts` field
-  var script = build.scripts(nodes);
-    .use('scripts', build.plugins.js());
+  build.scripts(nodes)
+    .use('scripts', build.plugins.js())
+    .toFile('build.js');
 
   // only include `.css` files from components' `.styles` field
-  var style = build.styles(nodes);
-    .use('styles', build.plugins.css());
-
-  // write the builds to the following files in parallel
-  yield [
-    script.toFile('build.js'),
-    style.toFile('build.css')
-  ];
-})();
+  build.styles(nodes)
+    .use('styles', build.plugins.css())
+    .toFile('build.css');
+})
 ```
 
 ## Builders

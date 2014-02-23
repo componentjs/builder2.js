@@ -4,13 +4,12 @@ var plugins = require('..').plugins
 var co = require('co')
 var fs = require('fs')
 var assert = require('assert')
-var Resolver = require('component-resolver')
-var Remotes = require('remotes')
+var resolve = require('component-resolver')
 var join = require('path').join
+var rimraf = require('rimraf');
 
 var options = {
-  install: true,
-  remote: new Remotes.GitHub
+  install: true
 }
 
 function fixture(name) {
@@ -33,9 +32,8 @@ function test(name) {
     var css
 
     it('should install', co(function* () {
-      var resolver = new Resolver(fixture(name), options)
-      tree = yield* resolver.tree()
-      nodes = resolver.flatten(tree)
+      tree = yield* resolve(fixture(name), options)
+      nodes = resolve.flatten(tree)
     }))
 
     it('should build', co(function* () {
@@ -59,14 +57,17 @@ describe('font-awesome', function () {
   var nodes
   var css
 
+  before(function (done) {
+    rimraf('components', done);
+  })
+
   it('should install', co(function* () {
-    var resolver = new Resolver({
+    tree = yield* resolve({
       dependencies: {
         "fortawesome/font-awesome": "4.0.3"
       }
     }, options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {

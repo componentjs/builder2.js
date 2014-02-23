@@ -4,13 +4,11 @@ var plugins = require('..').plugins
 var vm = require('vm')
 var co = require('co')
 var assert = require('assert')
-var Resolver = require('component-resolver')
-var Remotes = require('remotes')
+var resolve = require('component-resolver')
 var join = require('path').join
 
 var options = {
-  install: true,
-  remote: new Remotes.GitHub,
+  install: true
 }
 
 function fixture(name) {
@@ -30,9 +28,8 @@ describe('js-scripts', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-scripts'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-scripts'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -62,9 +59,8 @@ describe('js-scripts -dev', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-scripts'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-scripts'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -96,9 +92,8 @@ describe('js-main', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-main'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-main'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -131,9 +126,8 @@ describe('js-json', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-json'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-json'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -155,9 +149,8 @@ describe('js-templates', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-templates'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-templates'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -179,9 +172,8 @@ describe('js-extension', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-extension'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-extension'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -212,9 +204,8 @@ describe('js-glob', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-glob'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-glob'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -235,9 +226,8 @@ describe('js-infer-main', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-infer-main'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-infer-main'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
@@ -258,9 +248,8 @@ describe('js-debug', function () {
   var js
 
   it('should install', co(function* () {
-    var resolver = new Resolver(fixture('js-debug'), options)
-    tree = yield* resolver.tree()
-    nodes = resolver.flatten(tree)
+    tree = yield* resolve(fixture('js-debug'), options)
+    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
