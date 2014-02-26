@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "generator-supported": "~0.0.1",
+    "component-require2": "~0.1.0",
     "debug": "*",
     "stream-to-array": "^1.0.0",
     "mkdirp": "~0.3.5",

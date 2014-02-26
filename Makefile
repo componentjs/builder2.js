@@ -4,7 +4,7 @@ SRC = $(shell find lib -name "*.js")
 BUILD = $(subst lib,build,$(SRC))
 
 build:
-	@mkdir -p build/builders build/commonjs build/plugins
+	@mkdir -p build/builders build/plugins
 	@$(MAKE) $(BUILD)
 
 build/%.js: lib/%.js
