@@ -257,3 +257,29 @@ describe('js-debug', function () {
     js = yield builder.toStr()
   }))
 })
+
+describe('js-relative-up', function () {
+  var tree
+  var nodes
+  var js
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-relative-up'), options)
+    nodes = resolve.flatten(tree)
+  }))
+
+  it('should build', co(function* () {
+    var builder = build(nodes)
+    js = yield builder.toStr()
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require('../')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('if (require("js-relative-up") !== 1) throw new Error()', ctx)
+  })
+})
