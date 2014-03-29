@@ -76,6 +76,6 @@ describe('font-awesome', function () {
   }))
 
   it('should be correct', co(function* () {
-    css.should.include('url("fortawesome/font-awesome/v4.0.3/fonts/fontawesome-webfont.eot?v=4.0.3")')
+    css.should.include('url(\'fortawesome/font-awesome/v4.0.3/fonts/fontawesome-webfont.eot?v=4.0.3\')')
   }))
 })
