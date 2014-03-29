@@ -12,10 +12,6 @@ Creates a new builder with `nodes`. `builder` is a `Readable Stream`.
 
 Returns the entire build as a single string.
 
-### builder.toFile(filename, [callback])
-
-Save the build to a file. Will create the file even if nothing is included in the build.
-
 ## Plugins
 
 ### Using Plugins
