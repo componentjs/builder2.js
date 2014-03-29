@@ -18,16 +18,16 @@
     "url": "https://github.com/component/builder2.js/issues"
   },
   "dependencies": {
-    "generator-supported": "~0.0.1",
-    "component-require2": "~0.1.0",
     "debug": "*",
-    "stream-to-array": "^1.0.0",
+    "generator-supported": "~0.0.1",
+    "component-flatten": "~0.0.1",
+    "component-manifest": "~0.0.0",
+    "component-require2": "~0.1.0",
     "css-url-rewriter": "~0.0.1",
     "mkdirp": "~0.3.5",
-    "unglob": "~0.1.1",
     "requires": "^1.0.0",
     "graceful-fs": "^2.0.1",
-    "chanel": "^1.0.5",
+    "chanel": "^2.0.0",
     "syntax-error": "^1.1.0",
     "cp": "~0.1.1",
     "co": "^3.0.2"
