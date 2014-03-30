@@ -17,9 +17,13 @@ function fixture(name) {
 
 function build(nodes, options) {
   return new Builder(nodes, options)
-    .use('scripts', plugins.js())
-    .use('json', plugins.json())
-    .use('templates', plugins.string())
+    .use('scripts',
+      // plugins.es6modules(),
+      plugins.js())
+    .use('json',
+      plugins.json())
+    .use('templates',
+      plugins.string())
 }
 
 describe('js-scripts', function () {

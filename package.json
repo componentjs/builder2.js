@@ -23,6 +23,7 @@
     "component-flatten": "~0.0.1",
     "component-manifest": "~0.0.0",
     "component-require2": "~0.1.0",
+    "builder-es6-module-to-cjs": "~0.0.0",
     "css-url-rewriter": "~0.0.1",
     "mkdirp": "~0.3.5",
     "requires": "^1.0.0",
