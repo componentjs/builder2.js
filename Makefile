@@ -20,6 +20,7 @@ test:
 		--reporter spec \
 		--timeout 10s \
 		--bail \
-		test/scripts.js
+		test/scripts.js \
+		test/styles.js
 
 .PHONY: test clean

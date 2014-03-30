@@ -37,8 +37,7 @@ function test(name) {
     }))
 
     it('should build', co(function* () {
-      var builder = build(nodes)
-      css = yield builder.toStr()
+      css = yield build(nodes).end();
     }))
 
     it('should be correct', function () {
@@ -71,8 +70,7 @@ describe('font-awesome', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    css = yield builder.toStr()
+    css = yield build(nodes).end();
   }))
 
   it('should be correct', co(function* () {
