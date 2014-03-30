@@ -25,7 +25,7 @@ function build(nodes, options) {
 describe('js-scripts', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-scripts'), options)
@@ -33,8 +33,7 @@ describe('js-scripts', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -42,6 +41,8 @@ describe('js-scripts', function () {
     js.should.not.include("require('component-emitter')")
     js.should.not.include("require('component/emitter')")
     js.should.not.include("require('./something')")
+
+    js.should.include("component~emitter@")
   })
 
   it('should execute', function () {
@@ -56,7 +57,7 @@ describe('js-scripts', function () {
 describe('js-scripts -dev', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-scripts'), options)
@@ -64,10 +65,9 @@ describe('js-scripts -dev', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes, {
+    js += yield build(nodes, {
       dev: true
-    })
-    js = yield builder.toStr()
+    }).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -89,7 +89,7 @@ describe('js-scripts -dev', function () {
 describe('js-main', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-main'), options)
@@ -97,8 +97,7 @@ describe('js-main', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -106,9 +105,6 @@ describe('js-main', function () {
     js.should.not.include("require('./one.js')")
     js.should.not.include("require('./two')")
     js.should.not.include("require('./two.js')")
-
-    js.should.not.include('lib/one')
-    js.should.not.include('lib/two')
   })
 
   it('should execute', function () {
@@ -123,7 +119,7 @@ describe('js-main', function () {
 describe('js-json', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-json'), options)
@@ -131,8 +127,7 @@ describe('js-json', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should execute', function () {
@@ -146,7 +141,7 @@ describe('js-json', function () {
 describe('js-templates', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-templates'), options)
@@ -154,8 +149,7 @@ describe('js-templates', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should execute', function () {
@@ -169,7 +163,7 @@ describe('js-templates', function () {
 describe('js-extension', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-extension'), options)
@@ -177,13 +171,13 @@ describe('js-extension', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = Builder(nodes)
-    .use('coffee', function* (file) {
-      // no transform - just assume it's valid js
-      if (file.extension !== 'coffee') return
-      file.string = true
-    })
-    js = yield builder.toStr()
+    js += yield build(nodes)
+      .use('coffee', function* (file) {
+        // no transform - just assume it's valid js
+        if (file.extension !== 'coffee') return
+        file.string = true
+      })
+      .end()
   }))
 
   it('should rewrite requires', function  () {
@@ -201,7 +195,7 @@ describe('js-extension', function () {
 describe('js-glob', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-glob'), options)
@@ -209,8 +203,7 @@ describe('js-glob', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should execute', function () {
@@ -223,7 +216,7 @@ describe('js-glob', function () {
 describe('js-infer-main', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-infer-main'), options)
@@ -231,8 +224,7 @@ describe('js-infer-main', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should execute', function () {
@@ -245,7 +237,7 @@ describe('js-infer-main', function () {
 describe('js-debug', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-debug'), options)
@@ -253,15 +245,14 @@ describe('js-debug', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 })
 
 describe('js-relative-up', function () {
   var tree
   var nodes
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-relative-up'), options)
@@ -269,8 +260,7 @@ describe('js-relative-up', function () {
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    js = yield builder.toStr()
+    js += yield build(nodes).end();
   }))
 
   it('should rewrite requires', function  () {
