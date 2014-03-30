@@ -292,3 +292,20 @@ describe('js-multiple-names', function () {
     vm.runInContext('if (require("js-multiple-names") !== 3) throw new Error()', ctx)
   })
 })
+
+describe('js-require-uppercase', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-require-uppercase'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end()
+  }))
+
+  it('should have resolved the require()', function () {
+    js.should.include('var emitter = require("component~emitter@1.0.0"')
+  })
+})
