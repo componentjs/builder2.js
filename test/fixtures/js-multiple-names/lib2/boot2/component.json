@@ -1,0 +1,5 @@
+{
+  "locals": ["thing"],
+  "paths": [".."],
+  "scripts": ["index.js"]
+}

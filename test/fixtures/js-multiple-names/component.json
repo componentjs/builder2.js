@@ -1,0 +1,14 @@
+{
+  "name": "js-multiple-names",
+  "paths": [
+    "lib1",
+    "lib2"
+  ],
+  "locals": [
+    "boot1",
+    "boot2"
+  ],
+  "scripts": [
+    "index.js"
+  ]
+}

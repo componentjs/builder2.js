@@ -1,0 +1,1 @@
+module.exports = require('boot1') + require('boot2');

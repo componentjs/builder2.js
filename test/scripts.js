@@ -273,3 +273,22 @@ describe('js-relative-up', function () {
     vm.runInContext('if (require("js-relative-up") !== 1) throw new Error()', ctx)
   })
 })
+
+describe('js-multiple-names', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-multiple-names'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end()
+  }))
+
+  it('should execute', function () {
+        var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('if (require("js-multiple-names") !== 3) throw new Error()', ctx)
+  })
+})
