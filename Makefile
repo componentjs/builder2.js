@@ -19,8 +19,6 @@ test:
 		--require should \
 		--reporter spec \
 		--timeout 10s \
-		--bail \
-		test/scripts.js \
-		test/styles.js
+		--bail
 
 .PHONY: test clean

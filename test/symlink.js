@@ -22,17 +22,13 @@ function build(nodes, options) {
 
 describe('symlink', function () {
   var tree
-  var nodes
-  var js
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('files'), options)
-    nodes = resolve.flatten(tree)
   }))
 
   it('should build', co(function* () {
-    var builder = build(nodes)
-    yield builder.end()
+    yield build(tree).end()
   }))
 
   it('should have symlinked files', co(function* () {
