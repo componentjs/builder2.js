@@ -287,7 +287,7 @@ describe('js-multiple-names', function () {
   }))
 
   it('should execute', function () {
-        var ctx = vm.createContext()
+    var ctx = vm.createContext()
     vm.runInContext(js, ctx)
     vm.runInContext('if (require("js-multiple-names") !== 3) throw new Error()', ctx)
   })
@@ -307,5 +307,29 @@ describe('js-require-uppercase', function () {
 
   it('should have resolved the require()', function () {
     js.should.include('var emitter = require("component~emitter@1.0.0"')
+  })
+})
+
+describe('js-alias', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-alias'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree, {
+      alias: true
+    }).end();
+  }))
+
+  it('should execute aliases', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext("require('boot')", ctx);
+    vm.runInContext("require('emitter')", ctx);
+    vm.runInContext("require('component-emitter')", ctx);
+    vm.runInContext("require('component~emitter')", ctx);
   })
 })

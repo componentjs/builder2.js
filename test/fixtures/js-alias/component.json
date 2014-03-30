@@ -1,0 +1,9 @@
+{
+  "name": "js-alias",
+  "dependencies": {
+    "component/emitter": "*"
+  },
+  "paths": ["lib"],
+  "locals": ["boot"],
+  "scripts": ["index.js"]
+}
