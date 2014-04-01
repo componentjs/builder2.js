@@ -28,16 +28,14 @@ function build(nodes, options) {
 function test(name) {
   describe(name, function () {
     var tree
-    var nodes
     var css
 
     it('should install', co(function* () {
       tree = yield* resolve(fixture(name), options)
-      nodes = resolve.flatten(tree)
     }))
 
     it('should build', co(function* () {
-      css = yield build(nodes).end();
+      css = yield build(tree).end();
     }))
 
     it('should be correct', function () {

@@ -9,21 +9,14 @@
     "twitter": "https://twitter.com/jongleberry"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/component/builder2.js.git"
-  },
-  "bugs": {
-    "mail": "me@jongleberry.com",
-    "url": "https://github.com/component/builder2.js/issues"
-  },
+  "repository": "component/builder2.js",
   "dependencies": {
     "debug": "*",
     "generator-supported": "~0.0.1",
     "component-flatten": "~0.0.1",
     "component-manifest": "~0.0.0",
     "component-require2": "~0.1.0",
-    "builder-es6-module-to-cjs": "~0.0.0",
+    "builder-es6-module-to-cjs": "^1.0.0",
     "css-url-rewriter": "~0.0.1",
     "mkdirp": "~0.3.5",
     "requires": "^1.0.0",

@@ -1,16 +1,19 @@
 ## var builder = build(nodes, [options])
 
-Creates a new builder with `nodes`. `builder` is a `Readable Stream`.
+Creates a new builder with `nodes`. `nodes` can either be a `tree` returned from `component-resolver`, or a tree flattened by `component-flatten`.
 
 `options`:
 
 - `concurrency` <16> - this is how many files the builder will process at a time. In general, a limit at all is only necessary for `EMFILE` errors, but since this builder uses `graceful-fs`, setting `Infinity` should be fine for most build.
-- `dev` - Include files in local components' development fields.
+- `development` - Include files in local components' development fields.
 - `out` <'components'> - folder where all the components are saved.
+- `root` <process.cwd()> - root folder
 
-### builder.toStr([callback])
+### builder.end([callback])
 
-Returns the entire build as a single string.
+Returns the entire build as a single string (if applicable).
+Nothing is executed until you execute `.end()`.
+Aliased as `.build()`.
 
 ## Plugins
 
@@ -19,13 +22,13 @@ Returns the entire build as a single string.
 Plugins are of the form:
 
 ```js
-.use(field, plugin(options))
+.use(field, plugin(options), plugin(options))
 
 // example
 .use('scripts', build.plugins.js())
 ```
 
-Thus, plugins are registered on a per-field, allowing the builder to know which `fields` to unglob. You __must__ register your plugins on the same tick you initiate your builder. The build process beings on the next tick.
+Thus, plugins are registered on a per-field, allowing the builder to know which `fields` to unglob.
 
 Included plugins are stored in `require('component-builder2').plugins`. Please see the documentation on each builder for the included, relevant plugins.
 
@@ -47,40 +50,27 @@ function plugin(options) {
 
   }
 }
-
-// generator function (asynchronous)
-function plugin(options) {
-  return function* plugin(file) {
-
-  }
-}
 ```
 
 When creating a plugin, you __should__ wrap the actual plugin with another function even if there are no options. This creates a consistent API among all plugins.
 
-`file` has the following properties:
+`file` is created using [manifest](https://github.com/component/manifest.js) and has the following properties:
 
 - `path` - the `path` of the file as defined in the component, ex. `index.js`.
 - `filename` - the absolute `path` of where this file is located, ex. `/Users/jong/app/index.js`.
-- `extension` - the `extension` of this file, example `js`.
-- `component` - the `component.json`
+- `extension` - the `extension` of this file, example `js`. This tells plugins how to treat each file.
+- `node` - the `component.json`
 - `branch` - the resolved branch based on the resolver.
-- `obj` - a resolved "builder" object - look at the source code for more details.
+- `manifest` - a resolved "builder" object - look at the source code for more details.
 
 There is a convenience method called `file.read`. This allows you to read the current file as a `utf-8` string, which is saved as `file.string`. This would obviously only work with asynchronous plugins. For the `scripts` and `styles` builder, if `file.string` is never populated, the file will not be included in the build.
 
 ```js
 // only includes `.js` files in the build
-function plugin(file, done) {
-  if (file.extension === 'js') return done();
-  // automatically sets `file.string =`, so this is all you need to do.
-  file.read(done);
-}
-
-// same as above
-function* plugin(file) {
-  if (file.extension !== 'js') return;
-  yield file.read;
+function plugin(file) {
+  if (file.extension === 'js') return;
+  // `file.string = true` is a shortcut to include the string
+  file.string = true;
 }
 
 // read and autoprefix css
@@ -93,12 +83,5 @@ function plugin(file, done) {
     file.string = autoprefixer.process(string).css;
     done();
   })
-}
-
-// same as above
-function* plugin(file) {
-  if (file.extension !== 'css') return;
-  var string = yield file.read;
-  file.string = autoprefixer.process(string).css;
 }
 ```

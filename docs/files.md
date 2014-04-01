@@ -1,8 +1,23 @@
 ## var files = build.files(nodes, [options])
 
-This is the simplest builder. It isn't a stream unlike `scripts` or `styles` - this just iterates through all the files you choose and allows you to do whatever you wish with them.
+This is the simplest builder. This just iterates through all the files you choose and allows you to do whatever you wish with them. `.end()`'s callback doesn't return anything.
 
 ## Plugins
+
+Note that these two following plugins are unnecessary in development if you serve from both "components/" and ".". These plugins simply rewrite files to `build/` based on your apps directories.
+
+For example, doing the following in development would make the file builder unnecessary:
+
+```js
+var app = require('express')();
+var static = require('serve-static');
+
+// serve your dependencies
+app.use(static(__dirname + '/components'));
+
+// serve your entire app
+app.use(static(__dirname));
+```
 
 ### copy()
 

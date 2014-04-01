@@ -15,6 +15,15 @@ build.styles()
   .use('styles', builder.plugins.css())
 ```
 
+### string()
+
+Includes a file as a string.
+
+```js
+build.scripts()
+  .use('templates', builder.plugins.string());
+```
+
 ### Other
 
 - [autoprefixer](https://github.com/component/builder-autoprefixer) - Autoprefixes the CSS files
