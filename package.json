@@ -13,7 +13,7 @@
   "dependencies": {
     "debug": "*",
     "generator-supported": "~0.0.1",
-    "component-flatten": "~0.0.1",
+    "component-flatten": "1.0.0",
     "component-manifest": "~0.0.0",
     "component-require2": "~0.1.0",
     "builder-es6-module-to-cjs": "^1.0.0",
@@ -27,7 +27,7 @@
     "co": "^3.0.2"
   },
   "devDependencies": {
-    "component-resolver": "~0.2.0",
+    "component-resolver": "*",
     "rimraf": "*",
     "remotes": "~0.2.0",
     "mocha": "^1.17.0",
