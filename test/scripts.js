@@ -333,6 +333,7 @@ describe('js-mocha', function () {
   it('should execute', function () {
     var ctx = vm.createContext();
     vm.runInContext(js, ctx);
+    vm.runInContext('require("js-mocha")', ctx);
   })
 
   it('should not have require("undefined")', function () {
