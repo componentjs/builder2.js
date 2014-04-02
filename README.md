@@ -12,7 +12,7 @@ Depends on:
 
 - [resolver](https://github.com/component/resolver.js) - resolved dependency tree
 - [flatten](https://github.com/jonathanong/flatten.js) - flatten the dependency tree to create a build order
-- [require2](component/builder2.js) - this builder's `require()` implementation.
+- [require2](https://github.com/component/require2) - this builder's `require()` implementation.
 - [manifest](https://github.com/component/manifest.js) - unglobs components' fields and creates `file` objects suitable for plugins
 - [builder-es6-module-to-cjs](https://github.com/component/builder-es6-module-to-cjs) - the included ES6 -> CJS plugin
 
