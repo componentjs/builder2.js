@@ -258,6 +258,29 @@ describe('js-relative-up', function () {
   })
 })
 
+describe('js-relative-camelcase', function () {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-relative-camelcase'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require('../')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('if (require("js-relative-camelcase") !== 1) throw new Error()', ctx)
+  })
+})
+
 describe('js-multiple-names', function () {
   var tree;
   var js = Builder.require;

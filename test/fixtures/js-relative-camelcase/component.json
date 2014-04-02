@@ -1,0 +1,7 @@
+{
+  "name": "js-relative-camelcase",
+  "scripts": [
+    "index.js",
+    "src/somethingCamelCase.js"
+  ]
+}
