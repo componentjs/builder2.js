@@ -15,7 +15,7 @@
     "generator-supported": "~0.0.1",
     "component-flatten": "^1.0.0",
     "component-manifest": "^1.0.0",
-    "component-require2": "~0.1.0",
+    "component-require2": "^1.0.0",
     "css-url-rewriter": "~0.0.1",
     "syntax-error": "^1.1.0",
     "requires": "^1.0.0",
