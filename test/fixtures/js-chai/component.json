@@ -1,0 +1,9 @@
+{
+  "name": "js-chai",
+  "dependencies": {
+    "chaijs/chai": "1.9.1"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}

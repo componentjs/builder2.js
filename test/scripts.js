@@ -363,3 +363,26 @@ describe('js-mocha', function () {
     js.should.not.include('require("undefined")');
   })
 })
+
+describe('js-chai', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-chai'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext('require("js-chai")', ctx);
+  })
+
+  it('should not have require("undefined")', function () {
+    js.should.not.include('require("undefined")');
+  })
+})
