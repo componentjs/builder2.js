@@ -1,0 +1,9 @@
+{
+  "name": "js-mocha",
+  "dependencies": {
+    "visionmedia/mocha": "1.18.2"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}
