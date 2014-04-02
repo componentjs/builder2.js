@@ -16,7 +16,6 @@
     "component-flatten": "^1.0.0",
     "component-manifest": "^1.0.0",
     "component-require2": "~0.1.0",
-    "builder-es6-module-to-cjs": "^1.0.0",
     "css-url-rewriter": "~0.0.1",
     "syntax-error": "^1.1.0",
     "requires": "^1.0.0",
@@ -28,6 +27,7 @@
   },
   "devDependencies": {
     "component-resolver": "^1.0.0",
+    "builder-es6-module-to-cjs": "^1.0.0",
     "rimraf": "^2.2.6",
     "mocha": "^1.17.0",
     "should": "^3.0.0",

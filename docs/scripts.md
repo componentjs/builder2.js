@@ -27,15 +27,6 @@ The script builder's `file` objects have the following additional properties:
 
 Note: `file.string` must be populated for a file to be included in the build.
 
-### es6modules()
-
-Transpiles ES6 modules to CJS. This uses [builder-es6-module-to-cjs](https://github.com/component/builder-es6-module-to-cjs).
-
-```js
-build.scripts()
-  .use('scripts', builder.plugins.es6modules());
-```
-
 ### js()
 
 Includes a file as regular Javascript.
@@ -67,6 +58,7 @@ build.scripts()
 ### Other
 
 - [html-minifier](https://github.com/component/builder-html-minifier) - minifies your HTML templates
+- [builder-es6-module-to-cjs](builder-es6-module-to-cjs) - es6 module to cjs compiler
 - [jade](https://github.com/component/builder-jade)
 - [regenerator](https://github.com/component/builder-regenerator) - compiles generators to ES5
 - [coffee](https://github.com/component/builder-coffee)
