@@ -1,0 +1,16 @@
+{
+  "name": "js-502",
+  "scripts": ["index.js"],
+  "locals": [
+    "core-component-1",
+    "core-component-2",
+    "core-component-3",
+    "core-component-4",
+    "subcomponent-1",
+    "subcomponent-2"
+  ],
+  "paths": [
+    "core",
+    "subcomponents"
+  ]
+}

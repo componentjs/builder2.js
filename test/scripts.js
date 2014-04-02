@@ -386,3 +386,22 @@ describe('js-chai', function () {
     js.should.not.include('require("undefined")');
   })
 })
+
+describe('js-502', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-502'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext('require("js-502")', ctx);
+  })
+})
