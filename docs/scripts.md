@@ -2,10 +2,21 @@
 
 `options` (in addition to [builder](./builders.md) options):
 
-- `require` <true> - include the `require` implementation in the build. Set this to `false` for separate builds.
 - `sourceMap` <false> - enable source maps. Disabled by default. Not really working yet!
 - `sourceURL` <false> - enable source URLs. Defaults to `development`.
 - `alias` <false> - alias components with their shortnames. Allows you to `require()` components outside the build without worrying about versions. Defaults to `development`.
+
+Note that the `require()` implementation is not included in the build.
+You can access it at `build.scripts.require`, or as the `npm` module `component-require2`.
+For example:
+
+```js
+build.scripts(node, options)
+  .use()
+  .end(function (err, string) {
+    fs.writeFile('build.build.js', build.scripts.require + string);
+  })
+```
 
 ## Plugins
 

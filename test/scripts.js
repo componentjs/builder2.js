@@ -28,14 +28,14 @@ function build(tree, options) {
 
 describe('js-scripts', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-scripts'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -58,14 +58,14 @@ describe('js-scripts', function () {
 
 describe('js-scripts -dev', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-scripts'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree, {
+    js += yield build(tree, {
       dev: true
     }).end();
   }))
@@ -88,14 +88,14 @@ describe('js-scripts -dev', function () {
 
 describe('js-main', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-main'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -116,14 +116,14 @@ describe('js-main', function () {
 
 describe('js-json', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-json'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should execute', function () {
@@ -136,14 +136,14 @@ describe('js-json', function () {
 
 describe('js-templates', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-templates'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should execute', function () {
@@ -156,14 +156,14 @@ describe('js-templates', function () {
 
 describe('js-extension', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-extension'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree)
+    js += yield build(tree)
       .use('coffee', function* (file) {
         // no transform - just assume it's valid js
         if (file.extension !== 'coffee') return
@@ -186,14 +186,14 @@ describe('js-extension', function () {
 
 describe('js-glob', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-glob'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should execute', function () {
@@ -205,14 +205,14 @@ describe('js-glob', function () {
 
 describe('js-infer-main', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-infer-main'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should execute', function () {
@@ -224,27 +224,27 @@ describe('js-infer-main', function () {
 
 describe('js-debug', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-debug'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 })
 
 describe('js-relative-up', function () {
   var tree
-  var js
+  var js = Builder.require
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-relative-up'), options)
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end();
+    js += yield build(tree).end();
   }))
 
   it('should rewrite requires', function  () {
@@ -260,14 +260,14 @@ describe('js-relative-up', function () {
 
 describe('js-multiple-names', function () {
   var tree;
-  var js;
+  var js = Builder.require;
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-multiple-names'), options);
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end()
+    js += yield build(tree).end()
   }))
 
   it('should execute', function () {
@@ -279,14 +279,14 @@ describe('js-multiple-names', function () {
 
 describe('js-require-uppercase', function () {
   var tree;
-  var js;
+  var js = Builder.require;
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-require-uppercase'), options);
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree).end()
+    js += yield build(tree).end()
   }))
 
   it('should have resolved the require()', function () {
@@ -296,14 +296,14 @@ describe('js-require-uppercase', function () {
 
 describe('js-alias', function () {
   var tree;
-  var js;
+  var js = Builder.require;
 
   it('should install', co(function* () {
     tree = yield* resolve(fixture('js-alias'), options);
   }))
 
   it('should build', co(function* () {
-    js = yield build(tree, {
+    js += yield build(tree, {
       alias: true
     }).end();
   }))
