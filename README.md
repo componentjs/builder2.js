@@ -25,7 +25,7 @@ You may be interested in:
 ```js
 var fs = require('fs');
 var resolve = require('component-resolver');
-var build = require('component-builder2');
+var build = require('component-builder');
 
 // resolve the dependency tree
 resolve(process.cwd(), {

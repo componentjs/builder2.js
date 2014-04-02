@@ -30,7 +30,7 @@ Plugins are of the form:
 
 Thus, plugins are registered on a per-field, allowing the builder to know which `fields` to unglob.
 
-Included plugins are stored in `require('component-builder2').plugins`. Please see the documentation on each builder for the included, relevant plugins.
+Included plugins are stored in `require('component-builder').plugins`. Please see the documentation on each builder for the included, relevant plugins.
 
 ### Creating Plugins
 
