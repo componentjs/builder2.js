@@ -2,6 +2,10 @@
 
 This is the simplest builder. This just iterates through all the files you choose and allows you to do whatever you wish with them. `.end()`'s callback doesn't return anything.
 
+Known limitiations:
+
+- This builder does __not__ handle symlinks. 
+
 ## Plugins
 
 Note that these two following plugins are unnecessary in development if you serve from both "components/" and ".". These plugins simply rewrite files to `build/` based on your apps directories.
