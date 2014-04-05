@@ -10,9 +10,9 @@ build/%.js: lib/%.js
 	@$(BIN)regenerator --include-runtime $< > $@
 
 clean:
-	@rm -rf build
+	@rm -rf build public
 
-test:
+test: build
 	@$(NODE) $(BIN)mocha \
 		--harmony-generators \
 		--require should \
