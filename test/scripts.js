@@ -405,3 +405,22 @@ describe('js-502', function () {
     vm.runInContext('require("js-502")', ctx);
   })
 })
+
+describe('js-page.js', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-page.js'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+  })
+})
+
