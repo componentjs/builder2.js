@@ -1,4 +1,12 @@
 
+1.1.0 / 2014-04-05
+==================
+
+So you don't have to include this for every custom `build.js`.
+
+ * include build.scripts.canonical from build.js
+ * include build.scripts.umd from build.js
+
 1.0.4 / 2014-04-04
 ==================
 

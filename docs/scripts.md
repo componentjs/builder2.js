@@ -18,6 +18,18 @@ build.scripts(node, options)
   })
 ```
 
+## build.scripts.require
+
+The `require()` implementation used by Component. You must include this in your built JS yourself.
+
+## var canonical = build.scripts.canonical(tree)
+
+Return the JS entry point of a tree, allowing you to `require(canonical)` in the build.
+
+## var js = build.scripts.umd(canonical, alias, js)
+
+UMD-wrap JS with the given `canonical` name derived from `build.scripts.canonical()`, a global `alias` name, and the `js` without the `require` implementation.
+
 ## Plugins
 
 The script builder's `file` objects have the following additional properties:
