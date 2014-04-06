@@ -41,9 +41,9 @@ describe('symlink', function () {
     stat2.isSymbolicLink().should.be.true
   }))
 
-  describe('out option', function () {
+  describe('destination option', function () {
     it('should have symlinked files at specified output', co(function* () {
-      yield build(tree, { out: 'public' }).end()
+      yield build(tree, { destination: 'public' }).end()
 
       var dest = join(process.cwd(), 'public', 'files')
       yield fs.stat.bind(null, join(dest, 'one.txt'))
