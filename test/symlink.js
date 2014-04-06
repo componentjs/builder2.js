@@ -40,4 +40,18 @@ describe('symlink', function () {
     stat1.isSymbolicLink().should.be.true
     stat2.isSymbolicLink().should.be.true
   }))
+
+  describe('out option', function () {
+    it('should have symlinked files at specified output', co(function* () {
+      yield build(tree, { out: 'public' }).end()
+
+      var dest = join(process.cwd(), 'public', 'files')
+      yield fs.stat.bind(null, join(dest, 'one.txt'))
+      yield fs.stat.bind(null, join(dest, 'lib', 'two.txt'))
+      var stat1 = yield fs.lstat.bind(null, join(dest, 'one.txt'))
+      var stat2 = yield fs.lstat.bind(null, join(dest, 'lib', 'two.txt'))
+      stat1.isSymbolicLink().should.be.true
+      stat2.isSymbolicLink().should.be.true
+    }))
+  })
 })
