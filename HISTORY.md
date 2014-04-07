@@ -1,4 +1,10 @@
 
+1.1.2 / 2014-04-06
+==================
+
+ * build.scripts.canonical now returns the tree, not the canonical name
+ * fix UMD wrap formatting
+
 1.1.1 / 2014-04-06
 ==================
 
