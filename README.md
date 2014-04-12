@@ -35,16 +35,15 @@ resolve(process.cwd(), {
   if (err) throw err;
 
   // only include `.js` files from components' `.scripts` field
-  build.scripts(nodes)
+  build.scripts(tree)
     .use('scripts', build.plugins.js())
     .end(function (err, string) {
       if (err) throw err;
       fs.writeFileSync('build.js', string);
-    })
-    .toFile('build.js');
+    });
 
   // only include `.css` files from components' `.styles` field
-  build.styles(nodes)
+  build.styles(tree)
     .use('styles', build.plugins.css())
     .end(function (err, string) {
       if (err) throw err;
@@ -52,7 +51,7 @@ resolve(process.cwd(), {
     });
 
   // only copy `images` to the build folder
-  build.files(nodes)
+  build.files(tree)
     .use('images', build.plugins.symlink())
     .end(); // callback optional
 })
