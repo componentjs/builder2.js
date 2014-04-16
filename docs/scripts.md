@@ -70,7 +70,7 @@ build.scripts()
 ### Other
 
 - [html-minifier](https://github.com/component/builder-html-minifier) - minifies your HTML templates
-- [builder-es6-module-to-cjs](builder-es6-module-to-cjs) - es6 module to cjs compiler
+- [builder-es6-module-to-cjs](https://github.com/component/builder-es6-module-to-cjs) - es6 module to cjs compiler
 - [jade](https://github.com/component/builder-jade)
 - [regenerator](https://github.com/component/builder-regenerator) - compiles generators to ES5
 - [coffee](https://github.com/component/builder-coffee)
