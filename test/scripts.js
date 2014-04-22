@@ -421,6 +421,7 @@ describe('js-page.js', function () {
   it('should execute', function () {
     var ctx = vm.createContext();
     vm.runInContext(js, ctx);
+    vm.runInContext('require("js-page.js")', ctx);
   })
 })
 
