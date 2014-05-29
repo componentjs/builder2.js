@@ -10,7 +10,7 @@ build/%.js: lib/%.js
 	@$(BIN)regenerator --include-runtime $< > $@
 
 clean:
-	@rm -rf build public
+	@rm -rf build components public
 
 test: build
 	@$(NODE) $(BIN)mocha \
