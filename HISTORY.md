@@ -1,4 +1,11 @@
 
+1.1.6 / 2014-05-29
+==================
+
+ * pinned regenerator to 0.4.6 to build working release
+ * updated .npmignore to ignore `docs` and `examples` for release
+ * updated Makefile `clean` to remove `components` dir
+
 1.1.5 / 2014-04-22
 ==================
 
