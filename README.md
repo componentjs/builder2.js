@@ -20,6 +20,10 @@ You may be interested in:
 
 - [bundler](https://github.com/component/bundler.js) - create multiple bundles from the resolved dependency tree
 
+## Installation
+
+    npm install --save-dev component-builder2
+
 ## Example
 
 ```js
