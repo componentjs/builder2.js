@@ -29,7 +29,7 @@ You may be interested in:
 ```js
 var fs = require('fs');
 var resolve = require('component-resolver');
-var build = require('component-builder');
+var build = require('component-builder2');
 
 // resolve the dependency tree
 resolve(process.cwd(), {
