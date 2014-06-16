@@ -22,14 +22,16 @@ You may be interested in:
 
 ## Installation
 
-    npm install --save-dev component-builder2
+    npm install --save-dev component-builder
+    
+_NOTE_: Don't use the npm repo ~~[component-builder2](https://www.npmjs.org/package/component-builder2)~~ anymore. You get both versions [component/builder.js](https://github.com/component/builder.js) and [component/builder2.js](https://github.com/component/builder2.js) at this npm repo now: [component-builder](https://www.npmjs.org/package/component-builder)
 
 ## Example
 
 ```js
 var fs = require('fs');
 var resolve = require('component-resolver');
-var build = require('component-builder2');
+var build = require('component-builder');
 
 // resolve the dependency tree
 resolve(process.cwd(), {
@@ -60,10 +62,6 @@ resolve(process.cwd(), {
     .end(); // callback optional
 })
 ```
-
-You might also want more thorough examples:
-
-- [simple-builder2-demo](http://github.com/mnmly/simple-builder2-demo): Simple demo that shows how to use plugins and build as bundles.
 
 ## Builders
 
