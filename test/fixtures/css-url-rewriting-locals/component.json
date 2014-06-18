@@ -1,0 +1,9 @@
+{
+  "name": "local-component",
+  "paths": [
+    "local"
+  ],
+  "locals": [
+    "component"
+  ]
+}
