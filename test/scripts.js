@@ -425,3 +425,31 @@ describe('js-page.js', function () {
   })
 })
 
+describe('js-asset-path', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-asset-path'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext('require("js-asset-path")', ctx);
+  })
+
+  it('should rewrite asset path comments', function () {
+    js.should.not.include('/* component:file */ "test.txt"');
+    js.should.include('"js-asset-path/test.txt"');
+  });
+
+  it("should be able to handle relative paths", function () {
+    js.should.not.include('/* component:file */ "../assets/foo.txt"');
+    js.should.include('"js-asset-path/assets/foo.txt"');
+  });
+})

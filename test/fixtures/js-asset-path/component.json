@@ -1,0 +1,11 @@
+{
+  "name": "js-asset-path",
+  "scripts": [
+    "index.js",
+    "lib/index.js"
+  ],
+  "files": [
+    "test.txt",
+    "assets/foo.txt"
+  ]
+}
