@@ -1,4 +1,16 @@
 
+1.1.8 / 2014-07-16
+==================
+
+ * adbump version of syntax-error to v1.1.1 due to security issue
+ * better error detail from syntax-error ParseError.annotated
+
+1.1.7 / 2014-06-18
+==================
+
+ * added components to .npmignore
+ * return normalized url from util.rewiteUrl, added css-url-rewriting-locals test
+
 1.1.6 / 2014-05-29
 ==================
 
