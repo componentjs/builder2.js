@@ -2,7 +2,7 @@
 1.1.8 / 2014-07-16
 ==================
 
- * adbump version of syntax-error to v1.1.1 due to security issue
+ * bump version of syntax-error to v1.1.1 due to security issue
  * better error detail from syntax-error ParseError.annotated
 
 1.1.7 / 2014-06-18
