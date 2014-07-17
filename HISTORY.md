@@ -1,4 +1,9 @@
 
+1.1.9 / 2014-07-17
+==================
+
+ * bump version of css-url-rewriter to v0.1.0 due to underlying enhancements
+
 1.1.8 / 2014-07-16
 ==================
 
@@ -22,7 +27,7 @@
 ==================
 
  * fix when component names don't match repo
- 
+
 1.1.4 / 2014-04-21
 ==================
 
