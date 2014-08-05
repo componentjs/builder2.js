@@ -425,3 +425,19 @@ describe('js-page.js', function () {
   })
 })
 
+describe('js-require-single-quotes', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-require-single-quotes'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require(\'emitter\')")
+  })
+})

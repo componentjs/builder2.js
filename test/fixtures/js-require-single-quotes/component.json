@@ -1,0 +1,9 @@
+{
+  "name": "js-require-uppercase",
+  "dependencies": {
+    "component/emitter": "1.0.0"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}
