@@ -1,9 +1,7 @@
 {
-  "name": "js-require-uppercase",
-  "dependencies": {
-    "component/emitter": "1.0.0"
-  },
+  "name": "js-require-single-quotes",
   "scripts": [
-    "index.js"
+    "index.js",
+    "something.js"
   ]
 }

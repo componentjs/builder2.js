@@ -438,6 +438,7 @@ describe('js-require-single-quotes', function () {
   }))
 
   it('should rewrite requires', function  () {
-    js.should.not.include("require(\'emitter\')")
+    js.should.include("require(\'js-require-single-quotes/something.js\')")
+    js.should.not.include('require("js-require-single-quotes/something.js")')
   })
 })

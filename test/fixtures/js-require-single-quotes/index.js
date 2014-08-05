@@ -1,1 +1,1 @@
-var emitter = require('emitter')
+var s = require('./something')
