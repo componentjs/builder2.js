@@ -1,4 +1,4 @@
-1.1.10 / 2014-08-06
+1.1.10 / 2014-08-08
 ==================
 
  * remain quotes within `require()` calls - https://github.com/component/builder2.js/pull/72
