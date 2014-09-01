@@ -56,6 +56,40 @@ describe('js-scripts', function () {
   })
 })
 
+describe('js-nested-locals', function() {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-nested-locals'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite the component require correctly', function() {
+    js.should.not.include("require('nested/boot')")
+    js.should.not.include("require('./lib/nested/boot/boot')")
+
+    js.should.include("require('./lib/nested/boot')")
+  })
+
+  it('should rewrite requires inside of components correctly', function  () {
+    js.should.not.include("require('nested/boot/smth.js')")
+
+    js.should.include("require('./lib/nested/boot/smth.js')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-nested-locals")', ctx)
+    ctx.boot.main.should.be.ok
+    ctx.insideBoot.inside.should.be.ok
+  })
+})
+
 describe('js-scripts -dev', function () {
   var tree
   var js = Builder.require
