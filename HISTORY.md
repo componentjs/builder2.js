@@ -1,7 +1,7 @@
 1.1.11 / 2014-09-13
 ==================
 
- * [support for nested local dependencies](https://github.com/componentjs/builder2.js/pull/48)
+ * [support for nested local dependencies](https://github.com/componentjs/builder2.js/pull/75)
  * [allow using fragment identifier in css url.](https://github.com/componentjs/builder2.js/pull/77)
  * [Use canonical name as ID for AMD define()](https://github.com/componentjs/builder2.js/pull/78)
  * [fix `this` in strict mode](https://github.com/componentjs/builder2.js/pull/79)
