@@ -1,4 +1,4 @@
-# component-builder2 [![Build Status](https://travis-ci.org/component/builder2.js.png)](https://travis-ci.org/component/builder2.js)
+# component-builder2 [![Build Status](https://travis-ci.org/componentjs/builder2.js.png)](https://travis-ci.org/componentjs/builder2.js)
 
 Another version of component's builder. Some differences:
 
