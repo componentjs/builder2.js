@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'dummy';
+  src: url('local/component/fonts/dummy.woff');
+  font-weight: normal;
+}

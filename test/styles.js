@@ -47,6 +47,7 @@ function test(name) {
 test('css-simple')
 test('css-local-ordering')
 test('css-url-rewriting')
+test('css-url-rewriting-locals')
 test('css-glob')
 
 describe('font-awesome', function () {

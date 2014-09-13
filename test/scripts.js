@@ -56,6 +56,40 @@ describe('js-scripts', function () {
   })
 })
 
+describe('js-nested-locals', function() {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-nested-locals'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite the component require correctly', function() {
+    js.should.not.include("require('nested/boot')")
+    js.should.not.include("require('./lib/nested/boot/boot')")
+
+    js.should.include("require('./lib/nested/boot')")
+  })
+
+  it('should rewrite requires inside of components correctly', function  () {
+    js.should.not.include("require('nested/boot/smth.js')")
+
+    js.should.include("require('./lib/nested/boot/smth.js')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-nested-locals")', ctx)
+    ctx.boot.main.should.be.ok
+    ctx.insideBoot.inside.should.be.ok
+  })
+})
+
 describe('js-scripts -dev', function () {
   var tree
   var js = Builder.require
@@ -422,6 +456,53 @@ describe('js-page.js', function () {
     var ctx = vm.createContext();
     vm.runInContext(js, ctx);
     vm.runInContext('require("js-page.js")', ctx);
+  })
+})
+
+describe('js-require-single-quotes', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-require-single-quotes'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.include("require(\'js-require-single-quotes/something.js\')")
+    js.should.not.include('require("js-require-single-quotes/something.js")')
+  })
+})
+
+describe('js-locals', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-locals'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires for files inside locals', function  () {
+    console.log(js);
+    js.should.not.include("require('subcomponent-1')");
+    js.should.not.include('require("subcomponent-1")');
+    js.should.not.include("require('subcomponent-1/hello')");
+    js.should.not.include('require("subcomponent-1/hello")');
+    
+    js.should.include("require('./subcomponents/subcomponent-1')");
+    js.should.include("require('./subcomponents/subcomponent-1/hello')");
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
   })
 })
 

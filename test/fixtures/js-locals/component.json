@@ -1,0 +1,14 @@
+{
+  "name": "js-locals",
+  "dependencies": {
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "locals": [
+    "subcomponent-1"
+  ],
+  "paths": [
+    "subcomponents"
+  ]
+}

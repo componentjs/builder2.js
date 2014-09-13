@@ -1,1 +1,1 @@
-module.exports = require('./something')
+module.exports = require("./something")

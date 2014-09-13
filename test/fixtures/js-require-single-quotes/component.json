@@ -1,0 +1,7 @@
+{
+  "name": "js-require-single-quotes",
+  "scripts": [
+    "index.js",
+    "something.js"
+  ]
+}

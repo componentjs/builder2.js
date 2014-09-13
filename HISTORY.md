@@ -1,3 +1,25 @@
+1.1.10 / 2014-08-08
+==================
+
+ * remain quotes within `require()` calls - https://github.com/component/builder2.js/pull/72
+ * avoid error for nodejs `require()` calls within locals - https://github.com/component/builder2.js/pull/73 
+
+1.1.9 / 2014-07-17
+==================
+
+ * bump version of css-url-rewriter to v0.1.0 due to underlying enhancements
+
+1.1.8 / 2014-07-16
+==================
+
+ * bump version of syntax-error to v1.1.1 due to security issue
+ * better error detail from syntax-error ParseError.annotated
+
+1.1.7 / 2014-06-18
+==================
+
+ * added components to .npmignore
+ * return normalized url from util.rewiteUrl, added css-url-rewriting-locals test
 
 1.1.6 / 2014-05-29
 ==================
@@ -10,7 +32,7 @@
 ==================
 
  * fix when component names don't match repo
- 
+
 1.1.4 / 2014-04-21
 ==================
 

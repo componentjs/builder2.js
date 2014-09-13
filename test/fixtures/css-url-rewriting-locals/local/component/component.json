@@ -1,0 +1,9 @@
+{
+  "name": "component",
+  "styles": [
+    "fonts.css"
+  ],
+  "font": [
+    "fonts/dummy.woff"
+  ]
+}
