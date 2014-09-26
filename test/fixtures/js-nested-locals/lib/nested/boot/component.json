@@ -1,4 +1,3 @@
 {
-  "name": "nested/boot",
   "scripts": [ "index.js", "smth.js" ]
 }
