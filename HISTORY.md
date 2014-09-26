@@ -1,3 +1,8 @@
+1.1.12 / 2014-09-27
+==================
+
+ * merge [#81 fix nested locals](https://github.com/componentjs/builder2.js/pull/81)
+
 1.1.11 / 2014-09-13
 ==================
 
