@@ -1,0 +1,11 @@
+{
+  "scripts": [ "index.js" ],
+  "paths": [
+    "lib1",
+    "lib2"
+  ],
+  "locals": [
+    "test",
+    "test_again"
+  ]
+}
