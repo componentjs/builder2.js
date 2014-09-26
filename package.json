@@ -13,9 +13,9 @@
   "dependencies": {
     "chanel": "^2.0.0",
     "co": "^3.0.2",
-    "component-flatten": "^1.0.0",
+    "component-flatten": "^1.0.1",
     "component-manifest": "^1.0.0",
-    "component-require2": "^1.0.0",
+    "component-require2": "^1.0.1",
     "cp": "~0.1.1",
     "css-url-rewriter": "^0.1.0",
     "debug": "*",
