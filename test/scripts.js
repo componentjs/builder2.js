@@ -90,6 +90,36 @@ describe('js-nested-locals', function() {
   })
 })
 
+describe('js-matching-prefixes', function() {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-matching-prefixes'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+
+  it('should rewrite the component require correctly', function() {
+    js.should.not.include("require('test')")
+    js.should.not.include("require('test_again')")
+
+    js.should.include("require('./lib1/test')")
+    js.should.include("require('./lib2/test_again')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('this.test = require("js-matching-prefixes")', ctx)
+    ctx.test.test_name.should.equal('test')
+    ctx.test.test_again_name.should.equal('test_again')
+  })
+})
+
 describe('js-scripts -dev', function () {
   var tree
   var js = Builder.require
@@ -495,7 +525,7 @@ describe('js-locals', function () {
     js.should.not.include('require("subcomponent-1")');
     js.should.not.include("require('subcomponent-1/hello')");
     js.should.not.include('require("subcomponent-1/hello")');
-    
+
     js.should.include("require('./subcomponents/subcomponent-1')");
     js.should.include("require('./subcomponents/subcomponent-1/hello')");
   })
