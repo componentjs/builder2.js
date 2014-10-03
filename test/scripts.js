@@ -520,14 +520,13 @@ describe('js-locals', function () {
   }))
 
   it('should rewrite requires for files inside locals', function  () {
-    console.log(js);
     js.should.not.include("require('subcomponent-1')");
     js.should.not.include('require("subcomponent-1")');
     js.should.not.include("require('subcomponent-1/hello')");
     js.should.not.include('require("subcomponent-1/hello")');
 
     js.should.include("require('./subcomponents/subcomponent-1')");
-    js.should.include("require('./subcomponents/subcomponent-1/hello')");
+    js.should.include("require('./subcomponents/subcomponent-1/hello.js')");
   })
 
   it('should execute', function () {
