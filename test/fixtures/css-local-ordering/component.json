@@ -2,7 +2,12 @@
   "name": "css-local-ordering",
   "locals": [
     "one",
-    "two"
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven"
   ],
   "paths": [
     "lib"
