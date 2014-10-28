@@ -1,3 +1,11 @@
+1.1.13 / 2014-09-27
+==================
+* better tests for locals ordering [#29](https://github.com/componentjs/builder2.js/issues/29)
+* [faster CSS parsing](https://github.com/componentjs/builder2.js/pull/84) 
+* fix [file lookup of locals without file extension](https://github.com/componentjs/builder2.js/pull/82)
+* merge [Export AMD module with given external name, not with internal (canonical)](https://github.com/componentjs/builder2.js/pull/83)
+
+
 1.1.12 / 2014-09-27
 ==================
 
