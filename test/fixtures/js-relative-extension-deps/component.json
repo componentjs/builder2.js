@@ -1,0 +1,9 @@
+{
+  "name": "js-relative-extension-deps",
+  "scripts": [
+    "index.js"
+  ],
+  "dependencies": {
+    "bar/baz": "*"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "baz",
+  "version": "1.2.3",
+  "repository": "bar/baz",
+  "scripts": ["**/*.js"],
+  "main": "index.js"
+}
