@@ -1,0 +1,10 @@
+{
+  "name": "js-relative-extension-locals",
+  "scripts": [
+    "index.js"
+  ],
+  "paths": ["foo"],
+  "locals": [
+    "bar"
+  ]
+}
