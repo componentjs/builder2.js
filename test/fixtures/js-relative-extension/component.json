@@ -1,0 +1,6 @@
+{
+  "name": "js-relative-extension",
+  "scripts": [
+    "**/*.js"
+  ]
+}

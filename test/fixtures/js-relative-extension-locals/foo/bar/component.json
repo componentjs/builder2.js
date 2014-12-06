@@ -1,0 +1,4 @@
+{
+  "scripts": ["**/*.js"],
+  "main": "index.js"
+}

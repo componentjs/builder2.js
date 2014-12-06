@@ -563,3 +563,105 @@ describe('js-asset-path', function () {
     js.should.include('"js-asset-path/assets/foo.txt"');
   });
 })
+
+describe('js-relative-extension', function () {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-relative-extension'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require('./foo')")
+    js.should.not.include("require('./foo/bar')")
+    js.should.not.include("require('./foo/bar/baz')")
+    js.should.not.include("require('./foo/bar/qux')")
+    js.should.include("require('js-relative-extension/foo.js')")
+    js.should.include("require('js-relative-extension/bar/index.js')")
+    js.should.include("require('js-relative-extension/bar/baz.js')")
+    js.should.include("require('js-relative-extension/bar/qux/index.js')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-relative-extension")', ctx)
+    ctx.foo.should.equal('foo');
+    ctx.bar.should.equal('bar');
+    ctx.baz.should.equal('baz');
+    ctx.qux.should.equal('qux');
+  })
+})
+
+describe('js-relative-extension-locals', function () {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-relative-extension-locals'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.not.include("require('./foo/bar/index.js')")
+    js.should.include("require('./foo/bar')")
+    js.should.include("require('./foo/bar/baz/index.js')")
+    js.should.not.include("require('./foo/bar/baz')")
+    js.should.include("require('./foo/bar/baz/qux.js')")
+    js.should.not.include("require('./foo/bar/baz/qux')")
+    js.should.not.include("require('js-relative-extension-locals")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-relative-extension-locals")', ctx)
+    ctx.bar.should.equal('bar');
+    ctx.baz.should.equal('baz');
+    ctx.qux.should.equal('qux');
+  })
+})
+
+describe('js-relative-extension-deps', function () {
+  var tree
+  var js = Builder.require
+  var dir = fixture('js-relative-extension-deps');
+
+  it('should install', co(function* () {
+    tree = yield* resolve(dir, { install: true, out: join(dir, 'foo') })
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.include('require.register("bar~baz@1.2.3"')
+    js.should.include('require.register("bar~baz@1.2.3/qux/index.js"')
+    js.should.not.include('require.register("bar~baz@1.2.3/qux"')
+    js.should.include('require.register("bar~baz@1.2.3/qux/quux.js"')
+    js.should.not.include('require.register("bar~baz@1.2.3/qux/quux"')
+    js.should.include("require('bar~baz@1.2.3')")
+    js.should.include("require('bar~baz@1.2.3/qux/index.js')")
+    js.should.include("require('bar~baz@1.2.3/qux/quux.js')")
+    js.should.not.include("require('bar~baz@1.2.3/qux')")
+    js.should.not.include("require('bar~baz@1.2.3/qux/quux')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-relative-extension-deps")', ctx)
+    ctx.baz.should.equal('baz');
+    ctx.qux.should.equal('qux');
+    ctx.quux.should.equal('quux');
+  })
+})
