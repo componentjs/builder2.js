@@ -1,0 +1,14 @@
+{
+  "name": "js-locals-camelcase",
+  "dependencies": {
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "locals": [
+    "SubComponent-1"
+  ],
+  "paths": [
+    "SubComponents"
+  ]
+}

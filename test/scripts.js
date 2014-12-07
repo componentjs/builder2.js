@@ -668,3 +668,38 @@ describe('js-relative-extension-deps', function () {
     ctx.quux.should.equal('quux');
   })
 })
+
+describe('js-locals-camelcase', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-locals-camelcase'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires for files inside locals', function  () {
+    js.should.not.include("require('subcomponent-1')");
+    js.should.not.include('require("subcomponent-1")');
+    js.should.not.include("require('subcomponent-1/hello')");
+    js.should.not.include('require("subcomponent-1/hello")');
+    js.should.not.include("require('./subcomponents/subcomponent-1')");
+    js.should.not.include("require('./subcomponents/subcomponent-1/hello.js')");
+    js.should.not.include("require('SubComponent-1')");
+    js.should.not.include('require("SubComponent-1")');
+    js.should.not.include("require('SubComponent-1/Hello')");
+    js.should.not.include('require("SubComponent-1/Hello")');
+    js.should.include("require('./SubComponents/SubComponent-1')");
+    js.should.include("require('./SubComponents/SubComponent-1/Hello.js')");
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext("require('js-locals-camelcase')", ctx);
+    ctx.one.should.equal('WoRLd');
+  })
+})
