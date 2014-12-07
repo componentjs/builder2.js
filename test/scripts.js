@@ -532,6 +532,8 @@ describe('js-locals', function () {
   it('should execute', function () {
     var ctx = vm.createContext();
     vm.runInContext(js, ctx);
+    vm.runInContext('require("js-locals")', ctx)
+    ctx.one.should.equal('world');
   })
 })
 

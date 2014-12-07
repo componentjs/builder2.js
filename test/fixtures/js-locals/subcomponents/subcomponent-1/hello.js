@@ -1,1 +1,1 @@
-this.hello = true;
+module.exports = 'world'
