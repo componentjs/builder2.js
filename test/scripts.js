@@ -378,6 +378,7 @@ describe('js-require-uppercase', function () {
 
   it('should have resolved the require()', function () {
     js.should.include('var emitter = require("component~emitter@1.0.0"')
+    js.should.include('var emitter_ = require("component~emitter@1.0.0"')
   })
 })
 
