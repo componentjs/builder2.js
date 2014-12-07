@@ -703,3 +703,35 @@ describe('js-locals-camelcase', function () {
     ctx.one.should.equal('WoRLd');
   })
 })
+
+describe('js-nested-locals-uppercase', function() {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-nested-locals-uppercase'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite the component require correctly', function() {
+    js.should.not.include("require('nested/BOOT')")
+    js.should.not.include("require('./lib/nested/BOOT/BOOT')")
+    js.should.include("require('./lib/nested/BOOT')")
+  })
+
+  it('should rewrite requires inside of components correctly', function  () {
+    js.should.not.include("require('nested/BOOT/SMTH.js')")
+    js.should.include("require('./lib/nested/BOOT/SMTH.js')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-nested-locals-uppercase")', ctx)
+    ctx.boot.main.should.be.ok
+    ctx.insideBoot.inside.should.be.ok
+  })
+})
