@@ -1,3 +1,9 @@
+1.2.0 / 2014-12-xy
+==================
+* refactor require lookups
+* improve remote dependency lookups [#86](https://github.com/componentjs/builder2.js/pull/86)
+
+
 1.1.13 / 2014-09-27
 ==================
 * better tests for locals ordering [#29](https://github.com/componentjs/builder2.js/issues/29)
