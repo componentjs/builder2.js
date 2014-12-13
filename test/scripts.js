@@ -378,6 +378,7 @@ describe('js-require-uppercase', function () {
 
   it('should have resolved the require()', function () {
     js.should.include('var emitter = require("component~emitter@1.0.0"')
+    js.should.include('var emitter_ = require("component~emitter@1.0.0"')
   })
 })
 
@@ -532,6 +533,8 @@ describe('js-locals', function () {
   it('should execute', function () {
     var ctx = vm.createContext();
     vm.runInContext(js, ctx);
+    vm.runInContext('require("js-locals")', ctx)
+    ctx.one.should.equal('world');
   })
 })
 
@@ -663,5 +666,116 @@ describe('js-relative-extension-deps', function () {
     ctx.baz.should.equal('baz');
     ctx.qux.should.equal('qux');
     ctx.quux.should.equal('quux');
+  })
+})
+
+describe('js-locals-camelcase', function () {
+  var tree;
+  var js = Builder.require;
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-locals-camelcase'), options);
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires for files inside locals', function  () {
+    js.should.not.include("require('subcomponent-1')");
+    js.should.not.include('require("subcomponent-1")');
+    js.should.not.include("require('subcomponent-1/hello')");
+    js.should.not.include('require("subcomponent-1/hello")');
+    js.should.not.include("require('./subcomponents/subcomponent-1')");
+    js.should.not.include("require('./subcomponents/subcomponent-1/hello.js')");
+    js.should.not.include("require('SubComponent-1')");
+    js.should.not.include('require("SubComponent-1")');
+    js.should.not.include("require('SubComponent-1/Hello')");
+    js.should.not.include('require("SubComponent-1/Hello")');
+    js.should.include("require('./SubComponents/SubComponent-1')");
+    js.should.include("require('./SubComponents/SubComponent-1/Hello.js')");
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext();
+    vm.runInContext(js, ctx);
+    vm.runInContext("require('js-locals-camelcase')", ctx);
+    ctx.one.should.equal('WoRLd');
+  })
+})
+
+describe('js-nested-locals-uppercase', function() {
+  var tree
+  var js = Builder.require
+
+  it('should install', co(function* () {
+    tree = yield* resolve(fixture('js-nested-locals-uppercase'), options)
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite the component require correctly', function() {
+    js.should.not.include("require('nested/BOOT')")
+    js.should.not.include("require('./lib/nested/BOOT/BOOT')")
+    js.should.include("require('./lib/nested/BOOT')")
+  })
+
+  it('should rewrite requires inside of components correctly', function  () {
+    js.should.not.include("require('nested/BOOT/SMTH.js')")
+    js.should.include("require('./lib/nested/BOOT/SMTH.js')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-nested-locals-uppercase")', ctx)
+    ctx.boot.main.should.be.ok
+    ctx.insideBoot.inside.should.be.ok
+  })
+})
+
+describe('js-deps-camelcase', function () {
+  var tree
+  var js = Builder.require
+  var dir = fixture('js-deps-camelcase');
+
+  it('should install', co(function* () {
+    tree = yield* resolve(dir, { install: true, out: join(dir, 'foo') })
+  }))
+
+  it('should build', co(function* () {
+    js += yield build(tree).end();
+  }))
+
+  it('should rewrite requires', function  () {
+    js.should.include('require.register("bar~baz@1.2.3"')
+    js.should.include('require.register("bar~baz@1.2.3/qux/index.js"')
+    js.should.not.include('require.register("bar~baz@1.2.3/qux"')
+    js.should.include('require.register("bar~baz@1.2.3/qux/quux.js"')
+    js.should.include('require.register("bar~baz@1.2.3/QuxQuux.js"')
+    js.should.include('require.register("bar~baz@1.2.3/qux/FooBar.js"')
+    js.should.not.include('require.register("bar~baz@1.2.3/qux/quux"')
+    js.should.include("require('bar~baz@1.2.3')")
+    js.should.include("require('bar~baz@1.2.3/qux/index.js')")
+    js.should.include("require('bar~baz@1.2.3/qux/quux.js')")
+    js.should.include("require('bar~baz@1.2.3/QuxQuux.js')")
+    js.should.not.include("require('bar~baz@1.2.3/qux/quxquux')")
+    js.should.not.include("require('bar~baz@1.2.3/qux/quxquux.js')")
+    js.should.not.include("require('bar~baz@1.2.3/qux')")
+    js.should.not.include("require('bar~baz@1.2.3/qux/quux')")
+    js.should.not.include("require('bar~baz@1.2.3/qux/foobar')")
+  })
+
+  it('should execute', function () {
+    var ctx = vm.createContext()
+    vm.runInContext(js, ctx)
+    vm.runInContext('require("js-deps-camelcase")', ctx)
+    ctx.baz.should.equal('bazQuFoo');
+    ctx.qux.should.equal('qux');
+    ctx.quux.should.equal('quux');
+    ctx.Foo.should.equal('Foo');
+    ctx.Qu.should.equal('Qu');
   })
 })

@@ -1,0 +1,9 @@
+{
+  "name": "js-deps-camelcase",
+  "scripts": [
+    "index.js"
+  ],
+  "dependencies": {
+    "bar/baz": "*"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "scripts": [ "index.js" ],
+  "paths": [
+    "lib"
+  ],
+  "locals": [
+    "nested/BOOT"
+  ]
+}
