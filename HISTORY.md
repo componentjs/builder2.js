@@ -1,8 +1,8 @@
-1.2.0 / 2014-12-xy
+1.2.0 / 2014-12-19
 ==================
 * refactor require lookups
 * improve remote dependency lookups [#86](https://github.com/componentjs/builder2.js/pull/86)
-
+* allow camelCase for components [#87](https://github.com/componentjs/builder2.js/pull/87)
 
 1.1.13 / 2014-09-27
 ==================
