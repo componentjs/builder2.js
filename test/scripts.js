@@ -18,7 +18,6 @@ function fixture(name) {
 function build(tree, options) {
   return new Builder(tree, options)
     .use('scripts',
-      require('builder-es6-module-to-cjs')(),
       plugins.js())
     .use('json',
       plugins.json())
