@@ -1,7 +1,7 @@
 {
   "name": "component-builder",
   "description": "builder for component",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Jonathan Ong",
     "email": "me@jongleberry.com",
@@ -12,15 +12,15 @@
   "repository": "component/builder2.js",
   "dependencies": {
     "chanel": "^2.0.0",
-    "co": "^3.0.2",
+    "co": "^3.1.0",
     "component-flatten": "^1.0.1",
     "component-manifest": "^1.0.0",
     "component-require2": "^1.0.1",
-    "cp": "~0.1.1",
+    "cp": "^0.1.1",
     "debug": "*",
     "generator-supported": "~0.0.1",
-    "graceful-fs": "^2.0.1",
-    "mkdirp": "~0.3.5",
+    "graceful-fs": "^2.0.3",
+    "mkdirp": "^0.3.5",
     "requires": "^1.0.0",
     "syntax-error": "^1.1.1"
   },
